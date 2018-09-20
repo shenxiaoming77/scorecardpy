@@ -30,7 +30,7 @@ def eva_dfkslift(df, groupnum=None):
     df_kslift=pd.concat([
       pd.DataFrame({'group':0, 'good':0, 'bad':0, 'good_distri':0, 'bad_distri':0, 'badrate':0, 'cumbadrate':np.nan, 'cumgood':0, 'cumbad':0, 'ks':0, 'lift':np.nan}, index=np.arange(1)),
       df_kslift
-    ], ignore_index=True)
+    ], ignore_index=True, sort=False)
     # return
     return df_kslift
 # plot ks    
@@ -310,7 +310,7 @@ def perf_eva(label, pred, title=None, groupnum=None, plot_type=["ks", "roc"], sh
     ### export plot ### 
     if show_plot:
         plist = ["eva_p"+i+'(df_'+i+',title)' for i in plot_type]
-        subplot_nrows = np.ceil(len(plist)/2)
+        subplot_nrows = np.floor(len(plist)/2)
         subplot_ncols = np.ceil(len(plist)/subplot_nrows)
         
         fig = plt.figure()

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import pandas as pd
-import numpy as np
 import re
 from .condition_fun import *
 from .woebin import woepoints_ply1
@@ -28,12 +27,8 @@ def ab(points0=600, odds0=1/60, pdo=50):
     # two hypothesis
     # points0 = a - b*log(odds0)
     # points0 - PDO = a - b*log(2*odds0)
-    if pdo > 0:
-        b = pdo/np.log(2)
-    else:
-        b = -pdo/np.log(2)
+    b = pdo/np.log(2)
     a = points0 + b*np.log(odds0) #log(odds0/(1+odds0))
-    
     return {'a':a, 'b':b}
 
 
@@ -101,8 +96,7 @@ def scorecard(bins, model, xcolumns, points0=600, odds0=1/19, pdo=50, basepoints
     
     # coefficients
     aabb = ab(points0, odds0, pdo)
-    a = aabb['a'] 
-    b = aabb['b']
+    a, b = aabb.values()
     # odds = pred/(1-pred); score = a - b*log(odds)
     
     # bins # if (is.list(bins)) rbindlist(bins)

@@ -1,17 +1,28 @@
 # scorecardpy
 
-This package is python version of R package [scorecard](https://github.com/ShichenXie/scorecard). It makes the development of credit risk scorecard easily and efficiently by providing functions as follows: 
-- information value (iv), 
-- variable filter (var_filter), 
-- optimal woe binning (woebin, woebin_ply, woebin_plot, woebin_adj), 
-- scorecard scaling (scorecard, scorecard_ply) 
-- and performace evaluation (perf_eva, perf_psi).
+[![PyPI release](https://img.shields.io/pypi/v/scorecardpy.svg)](https://pypi.python.org/pypi/scorecardpy)
+[![Downloads](http://pepy.tech/badge/scorecardpy)](http://pepy.tech/project/scorecardpy)
+[![PyPI version](https://img.shields.io/pypi/pyversions/scorecardpy.svg)](https://pypi.python.org/pypi/scorecardpy)
+
+
+This package is python version of R package [scorecard](https://github.com/ShichenXie/scorecard). 
+Its goal is to make the development of traditional credit risk scorecard model easier and efficient by providing functions for some common tasks. 
+- data partition (`split_df`)
+- variable selection (`iv`, `var_filter`)
+- weight of evidence (woe) binning (`woebin`, `woebin_plot`, `woebin_adj`, `woebin_ply`)
+- scorecard scaling (`scorecard`, `scorecard_ply`)
+- performance evaluation (`perf_eva`, `perf_psi`)
 
 ## Installation
 
-Install the release version of `scorecardpy` from [PYPI](https://pypi.org/project/scorecardpy/) with:
+- Install the release version of `scorecardpy` from [PYPI](https://pypi.org/project/scorecardpy/) with:
 ```
 pip install scorecardpy
+```
+
+- Install the latest version of `scorecardpy` from [github](https://github.com/shichenxie/scorecardpy) with:
+```
+pip install git+git://github.com/shichenxie/scorecardpy.git
 ```
 
 ## Example
@@ -79,8 +90,6 @@ test_score = sc.scorecard_ply(test, card, print_step=0)
 # psi
 sc.perf_psi(
   score = {'train':train_score, 'test':test_score},
-  label = {'train':y_train, 'test':y_test},
-  x_limits = [250, 750],
-  x_tick_break = 50
+  label = {'train':y_train, 'test':y_test}
 )
 ```
